@@ -1,19 +1,25 @@
-import { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
-import NotificationButton from '../NotificationButton';
-import './styles.css';
+import NotificationButton from '../NotificationButton'
+import './styles.css'
 
 function SalesCard() {
+  const max = new Date()
+  const min = new Date(new Date().setDate(new Date().getDate() - 365))
 
-    const max = new Date();
-    const min = new Date(new Date().setDate(new Date().getDate() - 365));
+  const [minDate, setMinDate] = useState(min)
+  const [maxDate, setMaxDate] = useState(max)
 
-    const [minDate, setMinDate] = useState(min);
-    const [maxDate, setMaxDate] = useState(max);
+  useEffect(() => {
+    axios.get("http://localhost:8080/sales")
+        .then(response => {
+            console.log(response.data);
+        })
+  }, []);
 
-    
   return (
     <div className="begameta-card">
       <h2 className="begameta-sales-title">Vendas</h2>
@@ -95,4 +101,4 @@ function SalesCard() {
   )
 }
 
-export default SalesCard;
+export default SalesCard
