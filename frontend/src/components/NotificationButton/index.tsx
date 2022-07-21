@@ -15,7 +15,7 @@ function handleClick(id :number) {
     });
 }
 
-function NotificationButton( {saleId} : Props) {
+function NotificationButton( { saleId } : Props) {
   return (
     <div className="begameta-red-btn" onClick={() => handleClick(saleId)}>
       <img src={icon} alt="Notificar" />

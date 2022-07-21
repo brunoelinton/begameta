@@ -3,6 +3,7 @@ package com.brunoelinton.begameta.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,8 @@ public class SaleController {
 	}
 	
 	@GetMapping("/{id}/notification")
-	public void notifySms(@PathVariable Long id) {
+	public ResponseEntity<Void> notifySms(@PathVariable Long id) {
 		smsService.sendSms(id);
+		return ResponseEntity.noContent().build();
 	}
 }
