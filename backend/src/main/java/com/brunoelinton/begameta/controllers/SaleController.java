@@ -34,6 +34,7 @@ public class SaleController {
 	
 	@GetMapping("/{id}/notification")
 	public ResponseEntity<Void> notifySms(@PathVariable Long id) {
+		System.out.println("Teste de SMS");
 		smsService.sendSms(id);
 		return ResponseEntity.noContent().build();
 	}
